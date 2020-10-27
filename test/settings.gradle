@@ -1,3 +1,0 @@
-include ':activities'
-include ':app'
-rootProject.name = "test"
