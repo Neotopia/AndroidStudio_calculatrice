@@ -13,9 +13,7 @@ class ComputeActivity: AppCompatActivity() {
 
     private lateinit var editTextNumberOne: EditText
     private lateinit var editTextNumberTwo: EditText
-
     private lateinit var calculerButton: Button
-
     private lateinit var resultatTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,13 +23,13 @@ class ComputeActivity: AppCompatActivity() {
         resultatTextView = findViewById(R.id.resultat)
 
         calculerButton = findViewById(R.id.btn_calculer)
+        calculerButton.setEnabled(false)
         calculerButton.setOnClickListener{
             val sum: Int = (Integer.parseInt(editTextNumberOne.getText().toString()) + Integer.parseInt(editTextNumberTwo.getText().toString()))
             resultatTextView.setText("Résultat : ${sum.toString()}")
         }
 
         editTextNumberOne = findViewById(R.id.field_1)
-        editTextNumberOne.setText("0")
         editTextNumberOne.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 if (TextUtils.isEmpty(s.toString().trim()) || (TextUtils.isEmpty(editTextNumberTwo.getText().toString().trim()))){
@@ -51,7 +49,6 @@ class ComputeActivity: AppCompatActivity() {
         })
 
         editTextNumberTwo = findViewById(R.id.field_2)
-        editTextNumberTwo.setText("0")
         editTextNumberTwo.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 if (TextUtils.isEmpty(s.toString().trim()) || (TextUtils.isEmpty(editTextNumberOne.getText().toString().trim()))) {
