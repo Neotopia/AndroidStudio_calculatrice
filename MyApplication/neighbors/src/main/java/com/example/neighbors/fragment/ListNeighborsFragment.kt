@@ -9,10 +9,12 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.neighbors.R
+import com.example.neighbors.adapters.ListNeighborHandler
 import com.example.neighbors.adapters.ListNeighborsAdapter
 import com.example.neighbors.data.NeighborRepository
+import com.example.neighbors.models.Neighbor
 
-class ListNeighborsFragment: Fragment() {
+class ListNeighborsFragment: Fragment(), ListNeighborHandler {
 
     private lateinit var recyclerView: RecyclerView
 
@@ -42,4 +44,9 @@ class ListNeighborsFragment: Fragment() {
         val adapter = ListNeighborsAdapter(neighbors)
         recyclerView.adapter = adapter
     }
+
+    override fun onDeleteNeighbor(neighbor: Neighbor) {
+        TODO("Not yet implemented")
+    }
+
 }
