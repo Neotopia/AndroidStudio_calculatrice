@@ -7,5 +7,6 @@
     <string name="hint_name">Name</string>
     <string name="hint_image">Image</string>
     <string name="hint_address">Email</string>
+    <string name="phone_helper_text">ex: 0612345678</string>
 
 </resources>
