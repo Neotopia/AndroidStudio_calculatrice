@@ -108,10 +108,10 @@ class AddNeighbourFragment: Fragment(), TextWatcher {
     }
 
     fun isValidPhoneNumber(target: CharSequence?): Boolean {
-        return ((target.toString().startsWith("07")
-                || target.toString().startsWith("06"))
+        return (((target.toString()).startsWith("07")
+                || (target.toString()).startsWith("06"))
                 && target.toString().length == 10)
-        return (target.toString().length == 10)
+        //return (target.toString().length == 10)
     }
 
     override fun afterTextChanged(s: Editable?) {
