@@ -74,6 +74,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_field"
+        app:helperText="@string/email_helper_text"
         android:layout_margin="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
