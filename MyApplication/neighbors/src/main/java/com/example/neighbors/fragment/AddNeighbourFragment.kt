@@ -1,7 +1,6 @@
 package com.example.neighbors.fragment
 
 import android.os.Bundle
-import android.telephony.PhoneNumberUtils
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
@@ -52,6 +51,7 @@ class AddNeighbourFragment: Fragment(), TextWatcher {
             val aboutMe: String = aboutMeField.text.toString()
             val image: String = imageField.text.toString()
 
+            // Trouver un moyen d'auto incrémenter l'id ???
             val newNeighbour = Neighbor(
                 id = 1,
                 name = name,
@@ -62,7 +62,7 @@ class AddNeighbourFragment: Fragment(), TextWatcher {
                 avatarUrl = image,
                 favorite = false
             )
-            //NeighborRepository.getInstance().createNeighbour(newNeighbour)
+            NeighborRepository.getInstance().createNeighbour(newNeighbour)
             println(newNeighbour)
         }
         nameField.addTextChangedListener(this)
@@ -76,19 +76,19 @@ class AddNeighbourFragment: Fragment(), TextWatcher {
     }
 
     private fun verifButton() {
-        val name_field_not_null = !nameField.text.isNullOrEmpty()
-        val emailAddress_field_not_null = !emailAddressField.text.isNullOrEmpty()
-        val phone_field_not_null = !phoneField.text.isNullOrEmpty()
-        val website_field_not_null = !websiteField.text.isNullOrEmpty()
-        val aboutMe_field_not_null = !aboutMeField.text.isNullOrEmpty()
-        val image_field_not_null = !imageField.text.isNullOrEmpty()
+        val name_field_not_null: Boolean = !nameField.text.isNullOrEmpty()
+        val emailAddress_field_not_null: Boolean = !emailAddressField.text.isNullOrEmpty()
+        val phone_field_not_null: Boolean = !phoneField.text.isNullOrEmpty()
+        val website_field_not_null: Boolean = !websiteField.text.isNullOrEmpty()
+        val aboutMe_field_not_null: Boolean = !aboutMeField.text.isNullOrEmpty()
+        val image_field_not_null: Boolean = !imageField.text.isNullOrEmpty()
 
-        val emailValid = isValidEmail(emailAddressField.text)
+        val emailValid: Boolean = isValidEmail(emailAddressField.text)
         if(!emailValid && emailAddress_field_not_null){
             emailAddressField.setError("Invalid email address")
         }
 
-        val phoneNumberValid = isValidPhoneNumber(phoneField.text)
+        val phoneNumberValid: Boolean = isValidPhoneNumber(phoneField.text)
         if(!phoneNumberValid && phone_field_not_null){
             phoneField.setError("Format must be 0X XX XX XX XX")
         }
@@ -101,6 +101,7 @@ class AddNeighbourFragment: Fragment(), TextWatcher {
                     && aboutMe_field_not_null
                     && image_field_not_null
                     && emailValid
+                    && phoneNumberValid
     }
 
     fun isValidEmail(target: CharSequence?): Boolean {
@@ -112,6 +113,8 @@ class AddNeighbourFragment: Fragment(), TextWatcher {
                 || (target.toString()).startsWith("06"))
                 && target.toString().length == 10)
     }
+
+    // TextWatcher
 
     override fun afterTextChanged(s: Editable?) {
     }
